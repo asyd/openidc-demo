@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "openidc"
+version = "0.1.0"
+description = ""
+authors = ["Bruno Bonfils <bbonfils@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+flask = "^1.1.2"
+requests = "^2.23.0"
+flask-pyoidc = "^3.5.1"
+
+[tool.poetry.dev-dependencies]
+bpython = "^0.19"
+flask-shell-bpython = "^1.0.2"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

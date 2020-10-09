@@ -1,0 +1,17 @@
+# keycloak example
+openid_config = {
+    'auto_discovery': True,
+    'scope': ['openid', 'email', 'profile'],
+    'client_id': 'xxx',
+    'client_secret': 'xxx',
+    'issuer': 'https://auth.example.com/auth/realms/demo',
+}
+
+# google ample
+openid_config = {
+    'auto_discovery': True,
+    'scope': ['openid', 'email', 'profile'],
+    'client_id': 'xxxxxxx.apps.googleusercontent.com',
+    'client_secret': 'xxxxxX',
+    'issuer': 'https://accounts.google.com',
+}
