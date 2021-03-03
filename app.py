@@ -2,12 +2,17 @@ from flask import Flask, jsonify
 from flask_pyoidc.provider_configuration import ProviderConfiguration, ClientMetadata, ProviderMetadata
 from flask_pyoidc import OIDCAuthentication
 from flask_pyoidc.user_session import UserSession
+import logging
 import flask
 import socket
 from config import openid_config
 import sys
 
 # Perform initial checks on openid_conf
+
+logging.basicConfig(
+    level=logging.DEBUG,
+)
 
 try:
     openid_config['auto_discovery']
@@ -40,10 +45,15 @@ provider_config = ProviderConfiguration(
 auth = OIDCAuthentication({'default': provider_config}, app)
 
 
-@app.route('/login')
+@app.route('/')
 @auth.oidc_auth('default')
 def login():
     user_session = UserSession(flask.session, provider_name='default').userinfo
     print(user_session)
     return jsonify(user_session)
 
+
+@app.route('/logout')
+@auth.oidc_logout
+def logout():
+    return 'logged out'
