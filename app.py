@@ -7,9 +7,12 @@ import flask
 import socket
 from config import openid_config
 import sys
+import string
+import random
+
+logger = logging.getLogger(__name__)
 
 # Perform initial checks on openid_conf
-
 logging.basicConfig(
     level=logging.DEBUG,
 )
@@ -17,10 +20,11 @@ logging.basicConfig(
 try:
     openid_config['auto_discovery']
     if not openid_config['auto_discovery']:
-        print("supplied metadata is not yet supported")
+        logger.critical("supplied metadata is not yet supported")
         sys.exit(1)
 except KeyError:
-    pass
+    logger.critical('missing auto_discovery key')
+    sys.exit(1)
 
 try:
     openid_config['scope']
@@ -29,8 +33,9 @@ except KeyError:
 
 app = Flask(__name__)
 app.config.update(
-    SECRET_KEY='xxx',
+    SECRET_KEY=''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(16)),
     SERVER_NAME=f'{socket.getfqdn()}:5000',
+    JSONIFY_PRETTYPRINT_REGULAR=True,
 )
 
 provider_config = ProviderConfiguration(
