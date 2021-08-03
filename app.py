@@ -35,6 +35,7 @@ app = Flask(__name__)
 app.config.update(
     SECRET_KEY=''.join(random.SystemRandom().choice(string.ascii_uppercase + string.digits) for _ in range(16)),
     SERVER_NAME=f'{socket.getfqdn()}:5000',
+    JSONIFY_PRETTYPRINT_REGULAR=True,
 )
 
 provider_config = ProviderConfiguration(
