@@ -5,10 +5,11 @@ description = ""
 authors = ["Bruno Bonfils <bbonfils@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.7"
-flask = "^1.1.2"
+python = "~3.10"
+flask = "2.2.2"
 requests = "^2.23.0"
-flask-pyoidc = "^3.5.1"
+flask-pyoidc = "3.11.0"
+jinja2 = "3.1.2"
 
 [tool.poetry.dev-dependencies]
 bpython = "^0.19"
